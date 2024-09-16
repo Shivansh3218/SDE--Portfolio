@@ -1,7 +1,6 @@
 import { useRef, useState } from "react";
 import "./contact.scss";
 import { motion, useInView } from "framer-motion";
-import emailjs from "@emailjs/browser";
 
 const variants = {
   initial: {
@@ -23,27 +22,35 @@ const Contact = () => {
   const formRef = useRef();
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    message: "",
+  });
 
   const isInView = useInView(ref, { margin: "-100px" });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjs
-      .sendForm(
-        "service_94y20xo",
-        "template_v10u2oh",
-        formRef.current,
-        "pX_2hasGmGcuvjXIW"
-      )
-      .then(
-        (result) => {
-          setSuccess(true)
-        },
-        (error) => {
-          setError(true);
-        }
-      );
+    const { name, email, message } = formData;
+
+    if (name &&  message) {
+      // Create the mailto link with pre-filled subject and body
+      const mailtoLink = `mailto:${email}?subject=Message from ${name}&body=${encodeURIComponent(
+        message
+      )}`;
+
+      // Open the email client with the pre-filled data
+      window.location.href = mailtoLink;
+
+      setSuccess(true); // Set success state
+    } else {
+      setError(true); // Set error state if the fields are empty
+    }
   };
 
   return (
@@ -58,15 +65,15 @@ const Contact = () => {
         <motion.h1 variants={variants}>Let’s work together</motion.h1>
         <motion.div className="item" variants={variants}>
           <h2>Mail</h2>
-          <span>hello@react.dev</span>
+          <span>shivanshrawat587@gmail.com</span>
         </motion.div>
         <motion.div className="item" variants={variants}>
           <h2>Address</h2>
-          <span>Hello street New York</span>
+          <span>Dehradun Uttarakhand</span>
         </motion.div>
         <motion.div className="item" variants={variants}>
           <h2>Phone</h2>
-          <span>+1 234 5678</span>
+          <span>+9557667604</span>
         </motion.div>
       </motion.div>
       <div className="formContainer">
@@ -74,9 +81,9 @@ const Contact = () => {
           className="phoneSvg"
           initial={{ opacity: 1 }}
           whileInView={{ opacity: 0 }}
-          transition={{ delay: 3, duration: 1 }}
+          transition={{ delay: 1, duration: 1 }}
         >
-          <svg width="450px" height="450px" viewBox="0 0 32.666 32.666">
+          {/* <svg width="450px" height="450px" viewBox="0 0 32.666 32.666">
             <motion.path
               strokeWidth={0.2}
               fill="none"
@@ -97,18 +104,32 @@ const Contact = () => {
             l0.006-0.006c1.16,1.118,2.535,2.765,4.769,4.255c4.703,3.141,8.312,2.264,10.438,1.098c3.67-2.021,5.312-6.338,5.312-9.719
             C32.666,7.326,25.339,0,16.333,0z"
             />
-          </svg>
+          </svg> */}
         </motion.div>
         <motion.form
           ref={formRef}
           onSubmit={sendEmail}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ delay: 4, duration: 1 }}
+          transition={{ delay: 1, duration: 1 }}
         >
-          <input type="text" required placeholder="Name" name="name"/>
-          <input type="email" required placeholder="Email" name="email"/>
-          <textarea rows={8} placeholder="Message" name="message"/>
+          <input
+            type="text"
+            required
+            placeholder="Name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+          />
+        
+          <textarea
+            rows={8}
+            required
+            placeholder="Message"
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+          />
           <button>Submit</button>
           {error && "Error"}
           {success && "Success"}

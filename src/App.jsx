@@ -7,6 +7,7 @@ import Navbar from "./components/navbar/Navbar";
 import Parallax from "./components/parallax/Parallax";
 import Portfolio from "./components/portfolio/Portfolio";
 import Services from "./components/services/Services";
+import Service from "./components/services copy/Certifications";
 
 const App = () => {
   return (
@@ -16,23 +17,26 @@ const App = () => {
         <Navbar />
         <Hero />
       </section>
-      <section id="Services">
+      {/* <section id="Services">
         <Parallax type="services" />
-      </section>
-      <section>
+      </section> */}
+      <section id="Services">
         <Services />
       </section>
-      <section id="Portfolio">
-        <Parallax type="portfolio" />
-      </section>
+      {/* <section>
+        <Service />
+      </section> */}
       <Portfolio />
-      <section id="Contact">
+      <section id="Contact" style={{
+        marginBottom: "100px"
+      }}>
         <Contact />
       </section>
       {/* Framer Motion Crash Course */}
       {/* <Test/>
     <Test/> */}
     </div>
+ 
   );
 };
 

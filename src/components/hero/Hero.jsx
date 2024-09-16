@@ -47,21 +47,39 @@ const Hero = () => {
           initial="initial"
           animate="animate"
         >
-          <motion.h2 variants={textVariants} className="hero-heading">Shivansh Rawat</motion.h2>
-          <motion.h3 variants={textVariants}>
-            Web developer and UI designer
-          </motion.h3>
-          <motion.p variants={textVariants}><p>
-        I am a software engineer currently working at Navgurukul on an
-        e-commerce dashboard project. I am focused on automating various
-        processes such as WhatsApp automated order creation and others to
-        improve the overall efficiency of the platform.
-      </p></motion.p>
+          <motion.h2 variants={textVariants} className="hero-heading">
+            Shivansh Rawat
+          </motion.h2>
+          <motion.h1 variants={textVariants}>
+            Full Stack Developer and Trainer
+          </motion.h1>
+          <motion.p variants={textVariants}>
+            <p>
+              I am a software engineer currently working at{" "}
+              <strong
+                style={{
+                  color: "purple",
+                }}
+              >
+                Samyarth
+              </strong>{" "}
+              on an laptop management automation software. I am focused on
+              automating various processes such as software installations
+              remotely controlling an entire fleet of laptops.
+            </p>
+          </motion.p>
           <motion.div variants={textVariants} className="buttons">
-            <motion.button variants={textVariants}>
-              See the Latest Works
+            {/* <motion.button variants={textVariants}>
+              <a href="https://drive.google.com/drive/folders/16iOUuLblPn-FIJvDEI3UX8Ku-j9Z4ahG?usp=drive_link">
+                View Certifications
+              </a>
             </motion.button>
-            <motion.button variants={textVariants}>Contact Me</motion.button>
+            <motion.button variants={textVariants} style={{
+              cursor: "pointer",
+            }}>
+              {" "}
+              <a href="#contact">Contact Me</a>
+            </motion.button> */}
           </motion.div>
           <motion.img
             variants={textVariants}
@@ -77,9 +95,8 @@ const Hero = () => {
         initial="initial"
         animate="animate"
       >
-        Writer Content Creator Influencer
+        Developer Mentor Engineer Trainer
       </motion.div>
-      
     </div>
   );
 };
