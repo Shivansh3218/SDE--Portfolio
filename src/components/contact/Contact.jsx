@@ -36,7 +36,8 @@ const Contact = () => {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    const { name, email, message } = formData;
+    const email = "shivanshrawat587@gmail.com"
+    const { name,  message } = formData;
 
     if (name &&  message) {
       // Create the mailto link with pre-filled subject and body
